@@ -4,12 +4,11 @@ import pandas as pd
 # criar a integração com o outlook
 outlook = win32.Dispatch('outlook.application')
 
-# criar um email
-email = outlook.CreateItem(0)
-
 ler = pd.read_excel ('D:\Projeto Zurich/email_list.xlsx')
 # configurar as informações do seu e-mail
 for index, linha in ler.iterrows ():
+    # criar um email
+    email = outlook.CreateItem(0)
     email.to = (linha["EMAIL"])
     email.Subject = "Informações sobre o seu sinistro!" +  (linha ["NAME"])
     email.HTMLBody = """
